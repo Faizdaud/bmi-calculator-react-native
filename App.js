@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, TouchableHighlight } from 'react-native';
 
-const image = { uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSC9vUkPNBUYR3ypf36FFxVPngqxCpyclGkDQ&usqp=CAU" }
+const image = require("./assets/bg.png");
 
 export default function App() {
 
@@ -28,22 +28,23 @@ export default function App() {
 
 
   return (
-    <ImageBackground source={image} imageStyle= {{opacity:0.8}}> 
+    <ImageBackground source={image} style={styles.image}> 
     <View style={styles.container}> 
       <StatusBar style="auto" />
       <Text style={styles.title}>React BMI Calculator</Text>
 
       <Text style={styles.subTitle}>Height in cm</Text>
-      <TextInput placeholder="Height in cm" keyboardType="numeric" style={styles.input} value={height} onChangeText={height => { setHeight(height); }}  /> 
+      <TextInput placeholder="Height(cm)" keyboardType="numeric" style={styles.input} value={String(height)} onChangeText={height => { setHeight(height); }}/> 
       <Text style={styles.subTitle}>Weight in Kg</Text>
-      <TextInput placeholder="Weight in Kg" keyboardType="numeric" style={styles.input} value= {weight} onChangeText={mass =>{setWeight(mass)}} />
+      <TextInput placeholder="Weight(Kg)" keyboardType="numeric" style={styles.input} value= {String(weight)} onChangeText={mass =>{setWeight(mass)}} />
 
-      <TouchableOpacity style={styles.button} onPress={handleCalculate} > 
+      <TouchableOpacity     activeOpacity={0.6}
+    underlayColor="#DDDDDD" style={styles.button} onPress={handleCalculate} > 
         <Text style={styles.buttonText}>Calculate </Text> 
       </TouchableOpacity> 
 
-      <Text style={styles.result}>{resultNumber}</Text> 
-      <Text style={styles.result}> {resultText} </Text> 
+      <Text style={styles.result}>BMI = {resultNumber}</Text> 
+      <Text style={styles.result}>({resultText}) </Text> 
 
     </View>
     </ImageBackground>
@@ -60,12 +61,15 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: "100%", 
+    height: "100%",
+
   },
 
   text: {
     color: "white",
-    fontSize: 42,
+    fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "#000000a0"
@@ -83,35 +87,42 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     justifyContent: "center", 
     alignSelf: "center", 
-    marginTop: 50, 
+    marginTop: 20, 
     fontSize: 35 ,
   },
 
 
   input: { 
     height: 80, 
-    margin: "auto",
     textAlign: "center", 
+    margin: "auto",
     width: "50%", 
-    fontSize: 50, 
+    fontSize: 30, 
     marginTop: 24, 
     color: "#FFFFFF" ,
     borderColor: "red",
-    borderWidth: 1
+    borderWidth: 3,
+    justifyContent: "center", 
+    alignSelf: "center", 
   },
 
   buttonText: { 
     alignSelf: "center",
-    padding: 30, 
+    padding: 10, 
+    textAlign: "center",
     fontSize: 25, 
     color: "#FFCB1F", 
-    fontWeight: "bold" 
+    fontWeight: "bold",
+    margin: 20,
+    borderWidth: 5,
+    backgroundColor: "red",
+    borderRadius: 20,
+
   },
 
     result: {
        alignSelf: "center", 
        color: "#FFCB1F", 
-       fontSize: 65, 
-       padding: 15 
+       fontSize: 30, 
       } ,
 });
