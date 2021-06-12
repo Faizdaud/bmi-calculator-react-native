@@ -33,10 +33,10 @@ export default function App() {
       <StatusBar style="auto" />
       <Text style={styles.title}>React BMI Calculator</Text>
 
-      <Text style={styles.subTitle}>Height in cm</Text>
-      <TextInput placeholder="Height(cm)" keyboardType="numeric" style={styles.input} value={String(height)} onChangeText={height => { setHeight(height); }}/> 
-      <Text style={styles.subTitle}>Weight in Kg</Text>
-      <TextInput placeholder="Weight(Kg)" keyboardType="numeric" style={styles.input} value= {String(weight)} onChangeText={mass =>{setWeight(mass)}} />
+      <Text style={styles.subTitle}>Height</Text>
+      <TextInput placeholder="cm"  placeholderTextColor="#FFF" keyboardType="numeric" style={styles.input} value={String(height)} onChangeText={height => { setHeight(height); }}/> 
+      <Text style={styles.subTitle}>Weight</Text>
+      <TextInput placeholder="Kg"  placeholderTextColor="#FFF" keyboardType="numeric" style={styles.input} value= {String(weight)} onChangeText={mass =>{setWeight(mass)}} />
 
       <TouchableOpacity     activeOpacity={0.6}
     underlayColor="#DDDDDD" style={styles.button} onPress={handleCalculate} > 
